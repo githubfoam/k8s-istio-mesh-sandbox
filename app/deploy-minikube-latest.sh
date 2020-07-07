@@ -55,8 +55,8 @@ done
 echo "============================status check=============================================================="
 minikube status
 kubectl cluster-info
-kubectl get pods --all-namespaces;
-kubectl get pods -n default;
+kubectl get pods --all-namespaces
+kubectl get pods -n default
   # - echo "=============================Inspection============================================================="
   # - kubectl get pod -o wide #The IP column will contain the internal cluster IP address for each pod.
   # - kubectl get service --all-namespaces # find a Service IP,list all services in all namespaces

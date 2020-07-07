@@ -13,17 +13,6 @@ matrix:
     - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
-      addons:
-        snaps:
-          # - name: helm
-          #   confinement: classic
-          #   channel: latest/stable
-          # - name: kubectl
-          #   confinement: classic
-          #   channel: latest/stable
-          # - name: minikube
-          #   confinement: classic
-          #   channel: latest/stable
       language: python
       python: 3.7
       before_install:
@@ -34,11 +23,10 @@ matrix:
       script:
         - sudo make deploy-minikube-latest
         - sudo make deploy-istio-latest
-        # - travis_wait 15 sudo make deploy-java-maven &
       after_success:
         - deactivate
 
-    - name: "istio latest minikube Python 3.7 on bionic amd64" #OK
+    - name: "istio istio-1.6.4 minikube latest Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
       addons:
@@ -66,104 +54,21 @@ matrix:
       after_success:
         - deactivate
 
-    - name: "istio latest minikube Python 3.7 on bionic amd64" #OK
-      dist: bionic
-      arch: amd64
-      addons:
-        snaps:
-          - name: helm
-            confinement: classic
-            channel: latest/stable
-          - name: kubectl
-            confinement: classic
-            channel: latest/stable
-          - name: minikube
-            confinement: classic
-            channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - minikube version
-        - kubectl version --client
-        - helm version
-        # - travis_wait 15 sudo make deploy-java-maven &
-      after_success:
-        - deactivate
-
-    #TESTED OK
-    # - name: "openfaas minikube latest  Python 3.7 on bionic amd64" #OK
-    #   dist: bionic
-    #   arch: amd64
-    #   # addons:
-    #   #      snaps:
-    #   #        - name: kubectl
-    #   #          confinement: classic
-    #   #          channel: latest/stable
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - sudo make deploy-minikube-latest
-    #     - sudo make deploy-openfaas
-    #   after_success:
-    #     - deactivate
-
-    #TESTED OK
-    # - name: "rio latest Python 3.7 on bionic amd64" #OK
-    #   dist: bionic
-    #   arch: amd64
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - sudo make deploy-minikube-latest
-    #     - sudo make deploy-rio
-    #   after_success:
-    #     - deactivate
-
-    - name: "knative minikube latest  Python 3.7 on bionic amd64" #OK
-      dist: bionic
-      arch: amd64
-      addons:
-           snaps:
-             - name: kubectl
-               confinement: classic
-               channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-minikube-latest
-        - sudo make deploy-knative
-      after_success:
-        - deactivate
-
-    #TESTED OK
-    # - name: "canary minikube latest  Python 3.7 on bionic amd64" #OK
+      #TESTED_OK
+    # - name: "minikube helm kubectl snapped Python 3.7 on bionic amd64" #OK
     #   dist: bionic
     #   arch: amd64
     #   addons:
-    #        snaps:
-    #          - name: kubectl
-    #            confinement: classic
-    #            channel: latest/stable
+    #     snaps:
+    #       - name: helm
+    #         confinement: classic
+    #         channel: latest/stable
+    #       - name: kubectl
+    #         confinement: classic
+    #         channel: latest/stable
+    #       - name: minikube
+    #         confinement: classic
+    #         channel: latest/stable
     #   language: python
     #   python: 3.7
     #   before_install:
@@ -172,74 +77,10 @@ matrix:
     #     - source ~venvpy3/bin/activate
     #     - pip install -r requirements.txt
     #   script:
-    #     - sudo make deploy-minikube-latest
-    #     - sudo make deploy-canary
-    #   after_success:
-    #     - deactivate
-
-    #https://linkerd.io/2/getting-started/
-    - name: "linkerd minikube latest  Python 3.7 on bionic amd64" #OK
-      dist: bionic
-      arch: amd64
-      # addons:
-      #      snaps:
-      #        - name: kubectl
-      #          confinement: classic
-      #          channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-minikube-latest
-        - sudo make deploy-linkerd
-      after_success:
-        - deactivate
-
-    #https://docs.flagger.app/tutorials/linkerd-progressive-delivery#a-b-testing
-    - name: "linkerd flagger canary minikube latest  Python 3.7 on bionic amd64" #OK
-      dist: bionic
-      arch: amd64
-      # addons:
-      #      snaps:
-      #        - name: kubectl
-      #          confinement: classic
-      #          channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-minikube-latest
-        - sudo make deploy-canary-linkerd
-      after_success:
-        - deactivate
-
-    #TESTED OK
-    # - name: "blue green minikube latest  Python 3.7 on bionic amd64" #OK
-    #   dist: bionic
-    #   arch: amd64
-    #   addons:
-    #        snaps:
-    #          - name: kubectl
-    #            confinement: classic
-    #            channel: latest/stable
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - sudo make deploy-minikube-latest
-    #     - sudo make deploy-bluegreen
+    #     - minikube version
+    #     - kubectl version --client
+    #     - helm version
+    #     # - travis_wait 15 sudo make deploy-java-maven &
     #   after_success:
     #     - deactivate
 
