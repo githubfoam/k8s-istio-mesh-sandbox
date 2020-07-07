@@ -1,5 +1,9 @@
 #!/bin/bash
-set -eox pipefail #safety for script
+set -o errexit
+set -o pipefail
+set -o nounset
+set -o xtrace
+# set -eox pipefail #safety for script
 
 echo "=============================minikube============================================================="
 set -eox pipefail #safety for script
