@@ -7,6 +7,9 @@ deploy-istio:
 deploy-istio-latest:
 	bash app/deploy-istio-latest.sh
 
+deploy-k3d-latest:
+	bash k3d/deploy-k3d-latest.sh
+
 deploy-kind:
 	bash kind/deploy-kind.sh
 

@@ -10,6 +10,34 @@ matrix:
   fast_finish: true
   include:
 
+    - name: "istio latest k3d latest single master  Python 3.7 on bionic amd64"
+      os: linux
+      dist: bionic
+      arch: amd64
+      addons:
+        snaps:
+          - name: multipass
+            confinement: classic # or devmode
+            channel: latest/stable # will be passed to --channel flag
+          - name: kubectl
+            confinement: classic # or devmode
+            channel: latest/stable # will be passed to --channel flag
+          - name: helm
+            confinement: classic # or devmode
+            channel: latest/stable # will be passed to --channel flag
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+        - sudo make deploy-k3d-latest
+        - sudo make deploy-istio-latest
+      after_success:
+        - deactivate
+
     - name: "istio latest KIND_VERSION=0.8.1 wo snaps Python 3.7 on bionic" #OK
       dist: bionic
       arch: amd64

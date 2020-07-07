@@ -5,7 +5,7 @@ set -o nounset
 set -o xtrace
 # set -eox pipefail #safety for script
 
-https://github.com/kubernetes-sigs/kind
+# https://github.com/kubernetes-sigs/kind
 echo "=============================deploy kind============================================================="
 docker version
 
