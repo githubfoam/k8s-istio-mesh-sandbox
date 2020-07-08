@@ -19,6 +19,9 @@ deploy-k3d-latest:
 deploy-kind:
 	bash kind/deploy-kind.sh
 
+deploy-kind-temp:
+		bash kind/deploy-kind-temp.sh
+
 deploy-kind-latest:
 		bash kind/deploy-kind-latest.sh
 
