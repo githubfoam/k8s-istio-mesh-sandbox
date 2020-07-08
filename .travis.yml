@@ -112,32 +112,32 @@ matrix:
       after_success:
         - deactivate
 
-    - name: "istio temp KIND_VERSION=0.8.1 w snapped kubectl helm Python 3.7 on bionic" #OK
-      dist: bionic
-      arch: amd64
-      addons:
-        snaps:
-          - name: kubectl
-            confinement: classic # or devmode
-            channel: latest/stable # will be passed to --channel flag
-          - name: helm
-            confinement: classic # or devmode
-            channel: latest/stable # will be passed to --channel flag
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-kind-temp
-        # - sudo kind create cluster --config=app/kind-config.yaml
-        # - sudo kubectl cluster-info --context kind-kind
-        # - sudo make deploy-istio-latest
-        # - sudo kind delete cluster --name cilium-testing
-      after_success:
-        - deactivate
+    # - name: "istio temp KIND_VERSION=0.8.1 w snapped kubectl helm Python 3.7 on bionic" #OK
+    #   dist: bionic
+    #   arch: amd64
+    #   addons:
+    #     snaps:
+    #       - name: kubectl
+    #         confinement: classic # or devmode
+    #         channel: latest/stable # will be passed to --channel flag
+    #       - name: helm
+    #         confinement: classic # or devmode
+    #         channel: latest/stable # will be passed to --channel flag
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - sudo make deploy-kind-temp
+    #     # - sudo kind create cluster --config=app/kind-config.yaml
+    #     # - sudo kubectl cluster-info --context kind-kind
+    #     # - sudo make deploy-istio-latest
+    #     # - sudo kind delete cluster --name cilium-testing
+    #   after_success:
+    #     - deactivate
 
 
 #TESTED_OK
