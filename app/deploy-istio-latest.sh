@@ -8,6 +8,9 @@ set -o xtrace
 # Istio has several optional dashboards installed by the demo installation.
 echo "============================Install istio=============================================================="
 
+#Download Istio
+#/bin/sh -c 'curl -L https://istio.io/downloadIstio | sh -' #download and extract the latest release automatically (Linux or macOS)
+
 # Download Istio
 curl -L https://istio.io/downloadIstio | sh -
 # cd istio-1.6.4
