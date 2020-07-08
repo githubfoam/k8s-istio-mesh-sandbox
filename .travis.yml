@@ -104,7 +104,7 @@ matrix:
         - source ~venvpy3/bin/activate
         - pip install -r requirements.txt
       script:
-        - sudo make deploy-kind-latest
+        - sudo make deploy-kind
         - sudo kind create cluster --config=app/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
         - sudo make deploy-istio
