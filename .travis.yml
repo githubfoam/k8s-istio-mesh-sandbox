@@ -131,10 +131,10 @@ matrix:
         - source ~venvpy3/bin/activate
         - pip install -r requirements.txt
       script:
-        - sudo make deploy-kind-latest
-        - sudo kind create cluster --config=app/kind-config.yaml
-        - sudo kubectl cluster-info --context kind-kind
-        - sudo make deploy-istio-latest
+        - sudo make deploy-kind-temp
+        # - sudo kind create cluster --config=app/kind-config.yaml
+        # - sudo kubectl cluster-info --context kind-kind
+        # - sudo make deploy-istio-latest
         # - sudo kind delete cluster --name cilium-testing
       after_success:
         - deactivate
