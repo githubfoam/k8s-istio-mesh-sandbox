@@ -65,7 +65,7 @@ for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
       fi
 done
 
-kubectl get pod -o wide  --all-namespaces
+kubectl get pods
 kubectl get service --all-namespaces #list all services in all namespace
 
 # kubectl logs -f client-0-79f8b95476-x784d -n istio-grpc-example -c python
