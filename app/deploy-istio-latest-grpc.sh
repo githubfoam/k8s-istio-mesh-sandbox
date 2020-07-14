@@ -39,6 +39,7 @@ for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
         break
       fi
 done
+kubectl get po — all-namespaces -o wide
 kubectl get service --all-namespaces #list all services in all namespace
 
 # verify  istio auto injection is running
@@ -63,6 +64,8 @@ for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
         break
       fi
 done
+
+kubectl get po — all-namespaces -o wide
 kubectl get service --all-namespaces #list all services in all namespace
 
-kubectl logs -f client-0-79f8b95476-x784d -n istio-grpc-example -c python
+# kubectl logs -f client-0-79f8b95476-x784d -n istio-grpc-example -c python
