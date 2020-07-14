@@ -55,9 +55,8 @@ kubectl apply -f deployment-client.yml
 
 kubectl get pods -n istio-grpc-example
 echo echo "Waiting for istio-grpc-example to be ready ..."
-for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
-      # if kubectl get pods --namespace=kubeflow -l openebs.io/component-name=centraldashboard | grep Running ; then
-      if kubectl get pods --namespace=istio-grpc-example  | grep ContainerCreating ; then
+for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs      
+      if kubectl get pods --namespace=istio-grpc-example  | grep Init ; then
         sleep 10
       else
         break
