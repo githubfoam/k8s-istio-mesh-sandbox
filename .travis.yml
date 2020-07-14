@@ -111,7 +111,7 @@ matrix:
       after_success:
         - deactivate
 
-    - name: "istio temp KIND_VERSION=0.8.1 wo snaps Python 3.7 on bionic" #OK
+    - name: "istio latest KIND_VERSION=0.8.1 KUBECTL_VERSION=1.18.3 HELM_VERSION=2.16.9 wo snaps Python 3.7 on bionic" #OK
       dist: bionic
       arch: amd64
       language: python
@@ -130,6 +130,24 @@ matrix:
       after_success:
         - deactivate
 
+    - name: "istio latest KIND_VERSION=0.8.1 wo snaps Python 3.7 on bionic" #OK
+      dist: bionic
+      arch: amd64
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+        - sudo make deploy-kind-kubectl-helm-latest
+        - sudo kind create cluster --name openfaas-testing
+        - sudo kubectl config use-context kind-openfaas-testing    
+        - sudo make deploy-istio-latest
+        - sudo kind delete cluster --name openfaas-testing
+      after_success:
+        - deactivate
 
 #TESTED_OK
     # - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK

@@ -14,15 +14,21 @@ deploy-istio-latest:
 	bash app/deploy-istio-latest.sh
 
 deploy-k3d-latest:
-	bash k3d/deploy-k3d-latest.sh
+	bash platform/deploy-k3d-latest.sh
+
+deploy-kind-kubectl-helm-latest:
+	bash platform/deploy-kind-kubectl-helm-latest.sh
+
+deploy-kind-kubectl-helm:
+	bash platform/deploy-kind-kubectl-helm.sh
 
 deploy-kind:
 	bash platform/deploy-kind.sh
 
 deploy-minikube:
-	bash minikube/deploy-minikube.sh
+	bash platform/deploy-minikube.sh
 
 deploy-minikube-latest:
-	bash minikube/deploy-minikube-latest.sh
+	bash platform/deploy-minikube-latest.sh
 
 .PHONY: deploy-minikube deploy-istio push-image
