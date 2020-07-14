@@ -11,6 +11,9 @@ echo "============================Install istio=================================
 #Download Istio
 #/bin/sh -c 'curl -L https://istio.io/downloadIstio | sh -' #download and extract the latest release automatically (Linux or macOS)
 
+# mark the working directory
+export BASEDIR=$PWD
+
 # Download Istio
 curl -L https://istio.io/downloadIstio | sh -
 # cd istio-1.6.4
@@ -48,10 +51,11 @@ kubectl get pods -n istio-system
 
 ls -lai && pwd && whoami
 
-kubectl apply -f app/namespace.yml
-kubectl apply -f app/deployment-backend.yml
-kubectl apply -f app/service-backend.yml
-kubectl apply -f app/deployment-client.yml
+cd $BASEDIR/app
+kubectl apply -f namespace.yml
+kubectl apply -f deployment-backend.yml
+kubectl apply -f service-backend.yml
+kubectl apply -f deployment-client.yml
 
 kubectl get pods -n istio-grpc-example
 
