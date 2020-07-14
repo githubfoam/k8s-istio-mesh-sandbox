@@ -108,7 +108,6 @@ matrix:
         - sudo kind create cluster --config=app/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
         - sudo make deploy-istio
-        # - sudo kind delete cluster --name cilium-testing
       after_success:
         - deactivate
 
