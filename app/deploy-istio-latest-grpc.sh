@@ -29,27 +29,22 @@ istioctl install --set profile=demo
 # Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application
 kubectl label namespace default istio-injection=enabled
 
-kubectl get pods --all-namespaces
-for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
-    if kubectl get pods --namespace=istio-system |grep Running ; then
-      break
-    fi
-    sleep 2
-done
 kubectl get service --all-namespaces #list all services in all namespace
-
-for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
-    if kubectl get pods --namespace=default |grep Running ; then
-      break
-    fi
-    sleep 2
+echo echo "Waiting for istio-system to be ready ..."
+for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
+      # if kubectl get pods --namespace=kubeflow -l openebs.io/component-name=centraldashboard | grep Running ; then
+      if kubectl get pods --namespace=istio-system  | grep ContainerCreating ; then
+        sleep 10
+      else
+        break
+      fi
 done
 kubectl get service --all-namespaces #list all services in all namespace
 
 # verify  istio auto injection is running
 kubectl get pods -n istio-system
 
-ls -lai && pwd && whoami
+
 
 cd $BASEDIR/app
 kubectl apply -f namespace.yml
@@ -58,5 +53,16 @@ kubectl apply -f service-backend.yml
 kubectl apply -f deployment-client.yml
 
 kubectl get pods -n istio-grpc-example
+
+echo echo "Waiting for istio-grpc-example to be ready ..."
+for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
+      # if kubectl get pods --namespace=kubeflow -l openebs.io/component-name=centraldashboard | grep Running ; then
+      if kubectl get pods --namespace=istio-grpc-example  | grep ContainerCreating ; then
+        sleep 10
+      else
+        break
+      fi
+done
+kubectl get service --all-namespaces #list all services in all namespace
 
 kubectl logs -f client-0-79f8b95476-x784d -n istio-grpc-example -c python
