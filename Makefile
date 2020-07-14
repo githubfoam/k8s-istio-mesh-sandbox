@@ -19,12 +19,6 @@ deploy-k3d-latest:
 deploy-kind:
 	bash platform/deploy-kind.sh
 
-deploy-kind-temp:
-		bash kind/deploy-kind-temp.sh
-
-deploy-kind-latest:
-		bash kind/deploy-kind-latest.sh
-
 deploy-minikube:
 	bash minikube/deploy-minikube.sh
 

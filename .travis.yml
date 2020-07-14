@@ -131,10 +131,10 @@ matrix:
     #     - pip install -r requirements.txt
     #   script:
     #     - sudo make deploy-kind-temp
-    #     # - sudo kind create cluster --config=app/kind-config.yaml
-    #     # - sudo kubectl cluster-info --context kind-kind
-    #     # - sudo make deploy-istio-latest
-    #     # - sudo kind delete cluster --name cilium-testing
+    #     - sudo kind create cluster --name openfaas-testing
+    #     - sudo kubectl config use-context kind-openfaas-testing    
+    #     - sudo make deploy-istio-latest
+    #     - sudo kind delete cluster --name openfaas-testing
     #   after_success:
     #     - deactivate
 
