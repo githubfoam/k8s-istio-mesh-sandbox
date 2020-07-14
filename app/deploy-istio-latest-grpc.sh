@@ -19,18 +19,29 @@ cd istio-* #Move to the Istio package directory.
 # Add the istioctl client to your path (Linux or macOS)
 export PATH=$PWD/bin:$PATH
 
-kubectl create -f install/kubernetes/helm/helm-service-account.yaml
-helm init --service-account tiller
+# Install Istio
+# use the demo configuration profile
+istioctl install --set profile=demo
 
-kubectl create namespace istio-system
+# Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application
+kubectl label namespace default istio-injection=enabled
 
-helm install \
---wait \
---name istio \
---namespace istio-system \
-install/kubernetes/helm/istio
+kubectl get pods --all-namespaces
+for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
+    if kubectl get pods --namespace=istio-system |grep Running ; then
+      break
+    fi
+    sleep 2
+done
+kubectl get service --all-namespaces #list all services in all namespace
 
-helm status istio
+for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
+    if kubectl get pods --namespace=default |grep Running ; then
+      break
+    fi
+    sleep 2
+done
+kubectl get service --all-namespaces #list all services in all namespace
 
 # verify  istio auto injection is running
 kubectl get pods -n istio-system
