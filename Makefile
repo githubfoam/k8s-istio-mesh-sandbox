@@ -7,11 +7,14 @@ deploy-microk8s-istio:
 deploy-microk8s-latest:
 	bash microk8s/deploy-microk8s-latest.sh
 
-deploy-istio:
-	bash app/deploy-istio.sh
+deploy-istio-latest-grpc:
+	bash app/deploy-istio-latest-grpc.sh
 
 deploy-istio-latest:
 	bash app/deploy-istio-latest.sh
+
+deploy-istio:
+	bash app/deploy-istio.sh
 
 deploy-k3d-latest:
 	bash platform/deploy-k3d-latest.sh

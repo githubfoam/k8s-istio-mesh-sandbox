@@ -13,9 +13,11 @@ kubectl version --client
 
 echo "=============================deploy helm============================================================="
 
+
 export HELM_VERSION="2.16.9"
 wget -nv https://get.helm.sh/helm-v$HELM_VERSION-linux-amd64.tar.gz && tar xvzf helm-v$HELM_VERSION-linux-amd64.tar.gz && mv linux-amd64/helm linux-amd64/tiller /usr/local/bin
 helm version
+# Error: Get "http://localhost:8080/api/v1/namespaces/kube-system/pods?labelSelector=app%3Dhelm%2Cname%3Dtiller": dial tcp 127.0.1.1:8080: connect: connection refused
 
 echo "=============================deploy kind ============================================================="
 
