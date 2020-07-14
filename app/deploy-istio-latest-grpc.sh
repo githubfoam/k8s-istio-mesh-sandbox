@@ -54,7 +54,6 @@ kubectl apply -f service-backend.yml
 kubectl apply -f deployment-client.yml
 
 kubectl get pods -n istio-grpc-example
-
 echo echo "Waiting for istio-grpc-example to be ready ..."
 for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
       # if kubectl get pods --namespace=kubeflow -l openebs.io/component-name=centraldashboard | grep Running ; then
@@ -64,6 +63,7 @@ for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
         break
       fi
 done
+kubectl get pods -n istio-grpc-example
 
 kubectl get pods
 kubectl get service --all-namespaces #list all services in all namespace
