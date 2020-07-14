@@ -35,6 +35,14 @@ for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
 done
 kubectl get service --all-namespaces #list all services in all namespace
 
+for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
+    if kubectl get pods --namespace=default |grep Running ; then
+      break
+    fi
+    sleep 2
+done
+kubectl get service --all-namespaces #list all services in all namespace
+
 # Deploy the sample application
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 # As each pod becomes ready, the Istio sidecar will deploy along with it
