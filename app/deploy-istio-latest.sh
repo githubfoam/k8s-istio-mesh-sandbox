@@ -27,6 +27,13 @@ istioctl install --set profile=demo
 kubectl label namespace default istio-injection=enabled
 
 kubectl get pods --all-namespaces
+for i in {1..60}; do # Timeout after 5 minutes, 60x2=120 secs, 2 mins
+    if kubectl get pods --namespace=istio-system |grep Running ; then
+      break
+    fi
+    sleep 2
+done
+kubectl get service --all-namespaces #list all services in all namespace
 
 # Deploy the sample application
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
