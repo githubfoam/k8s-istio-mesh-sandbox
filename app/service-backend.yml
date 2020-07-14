@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: istio-grpc-example
+  labels:
+    app: backend
+spec:
+  ports:
+  - port: 50051
+    targetPort: 9090
+    protocol: TCP
+    # Port name is very important: https://istio.io/docs/reference/config/istio.networking.v1alpha3/#VirtualService
+    # HTTP routes will be applied to platform service ports named ‘http-’/‘http2-’/‘grpc-*’
+    name: grpc-backend
+  selector:
+    app: backend

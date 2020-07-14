@@ -80,21 +80,21 @@ echo $INGRESS_PORT
 echo $SECURE_INGRESS_PORT
 
 # Set the ingress IP
-# export INGRESS_HOST=$(minikube ip)
+export INGRESS_HOST=$(minikube ip)
 # Ensure an IP address was successfully assigned to the environment variable
-# echo $INGRESS_HOST
+echo $INGRESS_HOST
 
 # Run this command in a new terminal window to start a Minikube tunnel that sends traffic to your Istio Ingress Gateway:
-# minikube tunnel &
+minikube tunnel &
 
 # Set GATEWAY_URL
-# export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 # Ensure an IP address and port were successfully assigned to the environment variable
-# echo $GATEWAY_URL
+echo $GATEWAY_URL
 
 
 # Verify external access
-# echo http://$GATEWAY_URL/productpage
+echo http://$GATEWAY_URL/productpage
 
 
 # View the dashboard

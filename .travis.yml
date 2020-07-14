@@ -107,7 +107,7 @@ matrix:
         - sudo make deploy-kind
         - sudo kind create cluster --config=platform/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
-        - sudo make deploy-istio
+        - sudo make deploy-istio-latest
       after_success:
         - deactivate
 
