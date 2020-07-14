@@ -46,11 +46,12 @@ kubectl get service --all-namespaces #list all services in all namespace
 # verify  istio auto injection is running
 kubectl get pods -n istio-system
 
+ls -lai && pwd && whoami
 
-kubectl apply -f namespace.yml
-kubectl apply -f deployment-backend.yml
-kubectl apply -f service-backend.yml
-kubectl apply -f deployment-client.yml
+kubectl apply -f app/namespace.yml
+kubectl apply -f app/deployment-backend.yml
+kubectl apply -f app/service-backend.yml
+kubectl apply -f app/deployment-client.yml
 
 kubectl get pods -n istio-grpc-example
 
