@@ -8,15 +8,15 @@ deploy-istio-latest:
 	bash app/deploy-istio-latest.sh
 
 deploy-kind:
-	bash app/deploy-kind.sh
+	bash platform/deploy-kind.sh
 
 deploy-kind-latest:
-	bash app/deploy-kind-latest.sh
+	bash platform/deploy-kind-latest.sh
 
 deploy-minikube:
-	bash app/deploy-minikube.sh
+	bash platform/deploy-minikube.sh
 
 deploy-minikube-latest:
-	bash app/deploy-minikube-latest.sh
+	bash platform/deploy-minikube-latest.sh
 
 .PHONY: deploy-minikube deploy-istio push-image
