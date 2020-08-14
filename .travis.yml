@@ -64,8 +64,7 @@ matrix:
         - sudo make deploy-kind
         - sudo kind create cluster --config=platform/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
-        - sudo make deploy-istio-latest
-        # - sudo kind delete cluster --name cilium-testing
+        # - sudo make deploy-istio-latest        
       after_success:
         - deactivate
 
@@ -83,7 +82,6 @@ matrix:
         - sudo make deploy-kind-latest
         - sudo kind create cluster --config=platform/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
-        - sudo make deploy-istio-latest
-        # - sudo kind delete cluster --name cilium-testing
+        # - sudo make deploy-istio-latest        
       after_success:
         - deactivate
