@@ -10,7 +10,7 @@ matrix:
   fast_finish: true
   include:
 
-    - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK
+    - name: "istio latest minikube latest wo snaps Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
       language: python
@@ -21,12 +21,12 @@ matrix:
         - source ~venvpy3/bin/activate
         - pip install -r requirements.txt
       script:
-        - sudo make deploy-minikube-latest
+        - sudo make deploy-minikube-latest # minikube kubectl helm
         - sudo make deploy-istio-latest
       after_success:
         - deactivate
 
-    - name: "istio istio-1.6.4 minikube latest Python 3.7 on bionic amd64" #OK
+    - name: "istio-1.6.4 minikube latest wo snaps Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
       language: python
@@ -37,7 +37,7 @@ matrix:
         - source ~venvpy3/bin/activate
         - pip install -r requirements.txt
       script:
-        - sudo make deploy-minikube-latest
+        - sudo make deploy-minikube-latest # minikube kubectl helm
         - sudo make deploy-istio
       after_success:
         - deactivate
@@ -62,7 +62,7 @@ matrix:
         - pip install -r requirements.txt
       script:
         - sudo make deploy-kind
-        - sudo kind create cluster --config=app/kind-config.yaml
+        - sudo kind create cluster --config=platform/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
         - sudo make deploy-istio-latest
         # - sudo kind delete cluster --name cilium-testing
@@ -81,7 +81,7 @@ matrix:
         - pip install -r requirements.txt
       script:
         - sudo make deploy-kind-latest
-        - sudo kind create cluster --config=app/kind-config.yaml
+        - sudo kind create cluster --config=platform/kind-config.yaml
         - sudo kubectl cluster-info --context kind-kind
         - sudo make deploy-istio-latest
         # - sudo kind delete cluster --name cilium-testing
