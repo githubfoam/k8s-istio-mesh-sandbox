@@ -10,7 +10,7 @@ matrix:
   fast_finish: true
   include:
 
-    - name: "istio latest minikube latest wo snaps Python 3.7 on bionic amd64" #OK
+    - name: "deploy istio latest minikube latest wo snaps Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
       language: python
@@ -26,7 +26,7 @@ matrix:
       after_success:
         - deactivate
 
-    - name: "istio-1.6.4 minikube latest wo snaps Python 3.7 on bionic amd64" #OK
+    - name: "deploy istio-1.6.4 minikube latest wo snaps Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
       language: python
@@ -42,7 +42,7 @@ matrix:
       after_success:
         - deactivate
 
-    - name: "istio latest KIND_VERSION=0.8.1 w snapped kubectl helm Python 3.7 on bionic" #OK
+    - name: "deploy istio latest KIND_VERSION=0.8.1 w snapped kubectl helm Python 3.7 on bionic" #OK
       dist: bionic
       arch: amd64
       addons:
@@ -68,7 +68,7 @@ matrix:
       after_success:
         - deactivate
 
-    - name: "istio latest KIND_VERSION=0.8.1 wo snaps Python 3.7 on bionic" #OK
+    - name: "deploy istio latest KIND_VERSION=0.8.1 wo snaps Python 3.7 on bionic" #OK
       dist: bionic
       arch: amd64
       language: python
