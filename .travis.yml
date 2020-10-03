@@ -40,39 +40,56 @@ matrix:
       after_success:
         - deactivate
 
-#TESTED_OK
-    # - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK
-    #   dist: bionic
-    #   arch: amd64
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - sudo make deploy-minikube-latest
-    #     - sudo make deploy-istio-latest
-    #   after_success:
-    #     - deactivate
 
 #TESTED_OK
-    # - name: "istio istio-1.6.4 minikube latest Python 3.7 on bionic amd64" #OK
-    #   dist: bionic
-    #   arch: amd64
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - sudo make deploy-minikube-latest
-    #     - sudo make deploy-istio
-    #   after_success:
-    #     - deactivate
+    - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK
+      dist: bionic
+      arch: amd64
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+        - sudo make deploy-minikube-latest
+        - sudo make deploy-istio-latest
+      after_success:
+        - deactivate
+
+#TESTED_OK
+    - name: "istio istio-1.6.4 minikube latest Python 3.7 on bionic amd64" #OK
+      dist: bionic
+      arch: amd64
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+        - sudo make deploy-minikube-latest
+        - sudo make deploy-istio
+      after_success:
+        - deactivate
+
+    - name: "Istio-1.6.4 minikube latest Python 3.7 on focal amd64" #OK
+      dist: focal
+      arch: amd64
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+        - sudo make deploy-minikube-latest
+        - sudo make deploy-istio
+      after_success:
+        - deactivate
 
       #TESTED_OK
     # - name: "minikube helm kubectl snapped Python 3.7 on bionic amd64" #OK
