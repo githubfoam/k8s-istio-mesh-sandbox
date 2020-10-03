@@ -55,6 +55,7 @@ matrix:
         - sudo make deploy-minikube-latest
         - sudo make deploy-istio-latest
         - sudo make deploy-keycloak
+        - mvn fabric8:deploy -Popenshift -Dfabric8.mode=kubernetes -Dfabric8.namespace=fruits-catalog
       after_success:
         - deactivate
 
