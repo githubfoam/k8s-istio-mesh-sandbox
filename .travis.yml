@@ -10,9 +10,22 @@ matrix:
   fast_finish: true
   include:
 
-#TESTED_OK
-    - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK
-      dist: bionic
+    ##PROBLEM#################
+    # - name: "minikube KUBERNETES_VERSION=1.18.3 Python 3.7 on xenial" 
+    #   dist: bionic
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #   script:
+    #     - sudo make deploy-minikube
+    #   after_success:
+    #     - deactivate
+
+    - name: "istio latest minikube latest  Python 3.7 on focal amd64" #OK
+      dist: focal
       arch: amd64
       language: python
       python: 3.7
@@ -28,120 +41,112 @@ matrix:
         - deactivate
 
 #TESTED_OK
-    - name: "istio istio-1.6.4 minikube latest Python 3.7 on bionic amd64" #OK
-      dist: bionic
-      arch: amd64
-      # addons:
-      #   snaps:
-      #     - name: helm
-      #       confinement: classic
-      #       channel: latest/stable
-      #     - name: kubectl
-      #       confinement: classic
-      #       channel: latest/stable
-      #     - name: minikube
-      #       confinement: classic
-      #       channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-minikube-latest
-        - sudo make deploy-istio
-        # - travis_wait 15 sudo make deploy-java-maven &
-      after_success:
-        - deactivate
+    # - name: "istio latest minikube latest  Python 3.7 on bionic amd64" #OK
+    #   dist: bionic
+    #   arch: amd64
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - sudo make deploy-minikube-latest
+    #     - sudo make deploy-istio-latest
+    #   after_success:
+    #     - deactivate
+
+#TESTED_OK
+    # - name: "istio istio-1.6.4 minikube latest Python 3.7 on bionic amd64" #OK
+    #   dist: bionic
+    #   arch: amd64
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - sudo make deploy-minikube-latest
+    #     - sudo make deploy-istio
+    #   after_success:
+    #     - deactivate
 
       #TESTED_OK
-    - name: "minikube helm kubectl snapped Python 3.7 on bionic amd64" #OK
-      dist: bionic
-      arch: amd64
-      addons:
-        snaps:
-          - name: helm
-            confinement: classic
-            channel: latest/stable
-          - name: kubectl
-            confinement: classic
-            channel: latest/stable
-          - name: minikube
-            confinement: classic
-            channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - minikube version
-        - kubectl version --client
-        - helm version
-        # - travis_wait 15 sudo make deploy-java-maven &
-      after_success:
-        - deactivate
+    # - name: "minikube helm kubectl snapped Python 3.7 on bionic amd64" #OK
+    #   dist: bionic
+    #   arch: amd64
+    #   addons:
+    #     snaps:
+    #       - name: helm
+    #         confinement: classic
+    #         channel: latest/stable
+    #       - name: kubectl
+    #         confinement: classic
+    #         channel: latest/stable
+    #       - name: minikube
+    #         confinement: classic
+    #         channel: latest/stable
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - minikube version
+    #     - kubectl version --client
+    #     - helm version
+    #     # - travis_wait 15 sudo make deploy-java-maven &
+    #   after_success:
+    #     - deactivate
 
     #TESTED OK
-    - name: "minikube latest  Python 3.7 on xenial" #OK
-      dist: bionic
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-      script:
-        - sudo make deploy-minikube-latest
-      after_success:
-        - deactivate
+    # - name: "minikube latest  Python 3.7 on xenial" #OK
+    #   dist: bionic
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #   script:
+    #     - sudo make deploy-minikube-latest
+    #   after_success:
+    #     - deactivate
 
     #TESTED OK
-    - name: "minikube kubectl helm snapped Python 3.7 on bionic amd64"
-      dist: bionic
-      arch: amd64
-      addons:
-        snaps:
-          - name: helm
-            confinement: classic
-            channel: latest/stable
-          - name: kubectl
-            confinement: classic
-            channel: latest/stable
-          - name: minikube
-            confinement: classic
-            channel: latest/stable
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        # - sudo make deploy-minikube
-        - minikube version
-        - kubectl version --client
-        - helm version
-        # - travis_wait 15 sudo make deploy-java-maven &
-      after_success:
-        - deactivate
+    # - name: "minikube kubectl helm snapped Python 3.7 on bionic amd64"
+    #   dist: bionic
+    #   arch: amd64
+    #   addons:
+    #     snaps:
+    #       - name: helm
+    #         confinement: classic
+    #         channel: latest/stable
+    #       - name: kubectl
+    #         confinement: classic
+    #         channel: latest/stable
+    #       - name: minikube
+    #         confinement: classic
+    #         channel: latest/stable
+    #   language: python
+    #   python: 3.7
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #     - pip install -r requirements.txt
+    #   script:
+    #     # - sudo make deploy-minikube
+    #     - minikube version
+    #     - kubectl version --client
+    #     - helm version
+    #     # - travis_wait 15 sudo make deploy-java-maven &
+    #   after_success:
+    #     - deactivate
 
 
-    ##PROBLEM#################
-    - name: "minikube KUBERNETES_VERSION=1.18.3 Python 3.7 on xenial" #OK
-      dist: bionic
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-      script:
-        - sudo make deploy-minikube
-      after_success:
-        - deactivate
