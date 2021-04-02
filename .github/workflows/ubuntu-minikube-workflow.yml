@@ -1,0 +1,25 @@
+name: "Ubuntu minikube CI workflow"
+
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+
+
+  ubuntu-latest-minikube-job:
+    name: "ubuntu-latest minikube job"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status
+    - name: "check the runner"
+      run: |
+        ls -l /usr/local/bin/
+    - name: "Start a minikube cluster"
+          run: |
+            minikube start
+            n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60))        
+
