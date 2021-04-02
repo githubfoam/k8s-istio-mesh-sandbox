@@ -3,7 +3,7 @@ name: "Ubuntu minikube CI workflow"
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ feature_minikube ]
 
 jobs:
 
