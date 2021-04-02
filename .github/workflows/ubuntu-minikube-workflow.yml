@@ -21,5 +21,44 @@ jobs:
     - name: "Start a minikube cluster"
       run: |
         minikube start
-        n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60))        
+        n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60)) 
+
+  ubuntu-1604-job:
+    name: "ubuntu-16.04 minikube job"
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Start a minikube cluster"
+      run: |
+        minikube start
+        n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60)) 
+
+
+  ubuntu-1804-job:
+    name: "ubuntu-18.04 minikube job"
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "Start a minikube cluster"
+      run: |
+        minikube start
+        n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60)) 
+
+
+  ubuntu-2004-job:
+    name: "ubuntu-20.04 minikube job"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "Start a minikube cluster"
+      run: |
+        minikube start
+        n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60)) 
+
 
