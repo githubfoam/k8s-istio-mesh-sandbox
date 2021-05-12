@@ -1,0 +1,32 @@
+name: "Ubuntu minikube CI workflow"
+
+
+on:
+  push:
+    branches: [ maintenance ]
+
+jobs:
+
+  ubuntu-latest-minikube-latest-job:
+    name: "deploy istio latest minikube latest  Python 3.7 on bionic amd64"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status
+    - name: "deploy minikube-latest"
+      run: sudo make deploy-minikube-latest
+
+  ubuntu-latest-venv-minikube-latest-job:
+    name: "deploy istio latest minikube latest  Python 3.7 on bionic amd64"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status
+    - name: "deploy minikube-latest"
+      run: |
+        pip3 install virtualenv      
+        virtualenv -p $(which python3) ~venvpy3
+        source ~venvpy3/bin/activate
+        pip install -r requirements.txt
