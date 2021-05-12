@@ -41,7 +41,7 @@ matrix:
     #   after_success:
     #     - deactivate
 
-    - name: "deploy keycloak istio latest minikube latest  Python 3.7 on bionic amd64" #OK
+    - name: "deploy istio latest minikube latest  Python 3.7 on bionic amd64" #OK
       dist: bionic
       arch: amd64
       language: python
@@ -54,7 +54,6 @@ matrix:
       script:
         - sudo make deploy-minikube-latest
         # - sudo make deploy-istio-latest
-        # - sudo make deploy-keycloak
         # - mvn fabric8:deploy -Popenshift -Dfabric8.mode=kubernetes -Dfabric8.namespace=fruits-catalog
       after_success:
         - deactivate
