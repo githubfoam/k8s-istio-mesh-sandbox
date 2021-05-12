@@ -7,6 +7,16 @@ on:
 
 jobs:
 
+  ubuntu-latest-minikube-latest-job:
+    name: "deploy istio latest minikube latest  Python 3.7 on bionic amd64"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status
+    - name: "deploy minikube-latest"
+      run: sudo make deploy-minikube-latest
+
 
   ubuntu-latest-minikube-job:
     name: "ubuntu-latest minikube job"
